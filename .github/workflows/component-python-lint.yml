@@ -7,6 +7,10 @@ on:
         description: "Path to the module to lint"
         default: ""
         type: string
+    tox-jobs:
+        description: "List of tox jobs to run"
+        default: '["test","build","lint","type"]'
+        type: string
 
 jobs:
   tox:
@@ -15,7 +19,7 @@ jobs:
       matrix:
         # Run on Python versions that are stable and not EOL
         python-version: ["3.10", "3.11", "3.12", "3.13"]
-        tox-job: ["test", "build", "lint", "type"]
+        tox-job: ${{ fromJSON(inputs.tox-jobs) }}
     steps:
       - uses: actions/checkout@v4 # Checkout the current branch/merge state
       - name: Set up Python ${{ matrix.python-version }} # Get Python ready to use
