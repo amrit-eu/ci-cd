@@ -39,7 +39,7 @@ jobs:
         with:
           context: "{{defaultContext}}:${{ inputs.context }}"
           tags: "${{ steps.format.outputs.lowercase }}:develop"
-          push: false
+          push: true
       - name: Build and push
         uses: docker/build-push-action@v6
         if: ${{ github.event_name == 'release' }}
