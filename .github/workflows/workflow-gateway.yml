@@ -13,7 +13,8 @@ on:
       - gateway/**
   release:
     types: [created]
-
+  workflow_call:
+  
 jobs:
   ts-linting:
     uses: ./.github/workflows/component-ts-lint.yml
